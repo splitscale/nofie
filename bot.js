@@ -56,9 +56,9 @@ app.post('/github', (req, res) => {
   const body = req.body;
 
   // Send the embed as a message
-  channel.send(body);
+  console.log(body);
 
-  res.status(200).send('Notification received and sent to Discord.');
+  res.status(200).send('All is good');
 });
 
 bot.on('ready', () => {
