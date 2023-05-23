@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.post('/notifications', (req, res) => {
   const notification = req.body;
 
-  const channel = bot.channels.cache.get(process.env.CHANNEL_ID); // Use the environment variable for the channel ID
+  const channel = bot.channels.cache.get(process.env.DISCORD_CHANNEL_ID); // Use the environment variable for the channel ID
 
   // Format the notification payload
   const notificationMessage = JSON.stringify(notification, null, 2);
@@ -28,7 +28,7 @@ bot.on('ready', () => {
   console.log(`Logged in as ${bot.user.tag}`);
 });
 
-bot.login(process.env.BOT_TOKEN); // Use the environment variable for the bot token
+bot.login(process.env.DISCORD_BOT_TOKEN); // Use the environment variable for the bot token
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
