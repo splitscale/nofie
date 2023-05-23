@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.post('/notifications', (req, res) => {
   const notification = req.body;
 
-  const channel = bot.channels.cache.get(process.env.YOUR_CHANNEL_ID); // Use the environment variable for the channel ID
+  const channel = bot.channels.cache.get(process.env.CHANNEL_ID); // Use the environment variable for the channel ID
 
   // Format the notification payload
   const notificationMessage = JSON.stringify(notification, null, 2);
