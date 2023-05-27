@@ -14,7 +14,7 @@ const port = 3000; // Choose the port number you want to use
 app.use(bodyParser.json());
 
 app.post('/notifications', (req, res) => {
-  const { title, content } = req.body;
+  const { title, url, content } = req.body;
 
   const channel = bot.channels.cache.get(process.env.DISCORD_CHANNEL_ID); // Use the environment variable for the channel ID
 
@@ -23,6 +23,7 @@ app.post('/notifications', (req, res) => {
   // Create a MessageEmbed for the rich message
   const embed = new EmbedBuilder()
     .setTitle(title)
+    .setURL(url)
     .setDescription(content.info)
     .addFields({ name: 'Status', value: `**${status}**`, inline: true })
     .setTimestamp();
@@ -51,6 +52,8 @@ app.post('/notifications', (req, res) => {
 
   res.status(200).send('Notification received and sent to Discord.');
 });
+
+app.use(bodyParser.raw());
 
 app.post('/github', (req, res) => {
   const body = req.body;
